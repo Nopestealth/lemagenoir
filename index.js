@@ -21,7 +21,6 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
     const guildMember = message.member;
-
     // Attribue le mot Sender à la variable.
     let sender = message.author;
     
@@ -89,31 +88,31 @@ bot.on('message', message => {
     if (message.content === prefix + "choixpeaux") {
         if (message.channel.id === process.env.LCHOIXPEAUX) {
             if (message.member.roles.get(process.env.ELEVE)) {
-                message.reply("Tu as déjà été attribué(e) à une maison.");
+                message.reply("**[Choixpeaux]** Tu as déjà été attribué(e) à une maison.");
                 console.log("Quelqu'un a essayé de s'attribuer une deuxième maison.")
             }
             else
             {
                 random()
                 if (randnum ==1) {
-                    message.reply("Sage es-tu... Je ne vois qu'une option... SERDAIGLE !");
+                    message.reply("**[Choixpeaux]** Sage es-tu... Je ne vois qu'une option... SERDAIGLE !");
                     guildMember.addRoles([process.env.SERDAIGLE, process.env.ELEVE])
                     console.log(`${message.author.username} est devenu Serdaigle.`);
             }
                 if (randnum ==2) {
-                    message.reply("Ambitieux est-tu... Seul... SERPENTARD pourras t'aider à grandir sur le chemin de la Puissance Ultime !");
+                    message.reply("**[Choixpeaux]** Ambitieux est-tu... Seul... SERPENTARD pourras t'aider à grandir sur le chemin de la Puissance Ultime !");
                     guildMember.addRoles([process.env.SERPENTARD, process.env.ELEVE])
                     console.log(`${message.author.username} est devenu Serpentard.`);
             }
 
                 if (randnum ==3) {
-                    message.reply("Courageux es-tu... Je vois la seule maison qui t'acceptera... GRYFFONDOR !");
+                    message.reply("**[Choixpeaux]** Courageux es-tu... Je vois la seule maison qui t'acceptera... GRYFFONDOR !");
                     guildMember.addRoles([process.env.GRYFFONDOR, process.env.ELEVE])
                     console.log(`${message.author.username} est devenu Gryffondor.`);
             }
 
                 if (randnum ==4) {
-                    message.reply("Modeste es-tu... Je crois, que seul POUFSOUFFLE aura le charme de te faire aimer Poudlard !");
+                    message.reply("**[Choixpeaux]** Modeste es-tu... Je crois, que seul POUFSOUFFLE aura le charme de te faire aimer Poudlard !");
                     guildMember.addRoles([process.env.POUFSOUFFLE, process.env.ELEVE])
                     console.log(`${message.author.username} est devenu Poufsouffle.`);
                 }
