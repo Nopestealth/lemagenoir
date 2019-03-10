@@ -150,20 +150,33 @@ bot.on('message', message => {
     if (message.content === prefix + "chaudron" ) {
         if (message.channel.id === process.env.MCHAUDRON) {
             if (message.member.roles.get(process.env.PRANNEE)) {
-                message.channel.send(`**[Potage]** Bonjour. Je vous souhaite le bienvenue Au Bon Chaudron. Je suppose que rentres en Première Année ? J'ai pile ce qu'il te faut.`);
-                message.channel.send(`*Potage pointe deux chaudrons avec sa baguette, qui viennent se rapetissir dans un petit sac.*`);
-                message.channel.send(`**[Potage]** Ce sera plus facile pour le transport. Ils reprendront leurs tailles dès que tu les sortira du sac.`)
-                message.channel.send(`**[25 Gallions vous ont étés retirés de votre compte.]**`);
-                userData[sender.id + message.guild.id].money -= 25;
-                userData[sender.id + message.guild.id].chaudron = "Oui"
+                if (!userData[sender.id + message.guild.id].money >= 25) {
+                    message.channel.delete
+                    message.channel.send(`**[Potage]** Bonjour. Je vous souhaite le bienvenue Au Bon Chaudron. Je suppose que rentres en Première Année ? J'ai pile ce qu'il te faut.`);
+                    message.channel.send(`*Potage pointe deux chaudrons avec sa baguette, qui viennent se rapetissir dans un petit sac.*`);
+                    message.channel.send(`**[Potage]** Ce sera plus facile pour le transport. Ils reprendront leurs tailles dès que tu les sortira du sac.`)
+                    message.channel.send(`**[25 Gallions vous ont étés retirés de votre compte.]**`);
+                    userData[sender.id + message.guild.id].money -= 25;
+                    userData[sender.id + message.guild.id].chaudron = "Oui"
+                }
+                if (!userData[sender.id + message.guild.id].money <= 26) {
+                    message.channel.send(`**[Potage]** Mais, tu n'as pas assez d'argent pour payer tes fournitures. Reviens quand tu aura les moyens.`);
+                    console.log(`Quelqu'un n'avait pas l'argent requis pour l'achat de Chaudron.`)
+                }
             }
             if (message.member.roles.get(process.env.DEANNEE)) {
-                message.channel.send(`**[Potage]** Bonjour ${message.member}, tu rentres en deuxième année à Poudlard, j'ai tout ce qu'il te faut en réserve. Attend moi-là.`);
-                message.channel.send(`*Potage se dirige vers sa réserve, et elle revient avec deux chaudron, qu'elle fait léviter. Elle les fait se rapetissir dans un sac.*`);
-                message.channel.send(`**[Potage]** Voilà, ce sera plus simple pour les transporter. Cela fera 25 Gallions, s'il te plait.`);
-                message.channel.send(`**[25 Gallions vous ont étés retirés de votre compte.]**`);
-                userData[sender.id + message.guild.id].money -= 25;
-                userData[sender.id + message.guild.id].chaudron = "Oui"
+                if (!userData[sender.id + message.guild.id].money >= 25) {
+                    message.channel.send(`**[Potage]** Bonjour ${message.member}, tu rentres en deuxième année à Poudlard, j'ai tout ce qu'il te faut en réserve. Attend moi-là.`);
+                    message.channel.send(`*Potage se dirige vers sa réserve, et elle revient avec deux chaudron, qu'elle fait léviter. Elle les fait se rapetissir dans un sac.*`);
+                    message.channel.send(`**[Potage]** Voilà, ce sera plus simple pour les transporter. Cela fera 25 Gallions, s'il te plait.`);
+                    message.channel.send(`**[25 Gallions vous ont étés retirés de votre compte.]**`);
+                    userData[sender.id + message.guild.id].money -= 25;
+                    userData[sender.id + message.guild.id].chaudron = "Oui"
+                }
+                if (!userData[sender.id + message.guild.id].money <= 25) {
+                    message.channel.send(`**[Potage]** Mais, tu n'as pas assez d'argent pour payer tes fournitures. Reviens quand tu aura les moyens.`);
+                    console.log(`Quelqu'un n'avait pas l'argent requis pour l'achat de Chaudron.`)
+                }
             }
         }
     }
@@ -253,6 +266,7 @@ bot.on('message', message => {
                 userData[sender.id + message.guild.id].guipure = "Oui"
             }
             if (message.member.roles.get(process.env.DEANNEE)) {
+                
                 message.channel.send(`**[Madame Guipure]** Bonjour ${message.member}, tu viens acheter tes nouvelles robes ?`);
                 message.channel.send(`**[Madame Guipure]** Je vais te chercher ce qu'il te faut, ne bouge pas.`);
                 message.channel.send(`*Madame Guipure se dirige vers son arrière-boutique. Elle revient plusieurs minutes après, avec tout le matériel qu'il vous faut.*`);
@@ -509,14 +523,14 @@ bot.on('message', message => {
                 message.channel.send({embed: {
                     title:'Jour de Paye',
                     color: 0x0079FF,
-                    description:'Vous récoltez 50 Gallions, ajouté à votre account!'
+                    description:'Vous récoltez 5 Gallions, ajouté à votre account!'
                 
                 }})
             } else {
             message.channel.send({embed: {
                 title:'Jour de Paye',
                 color: 0x0079FF,
-                description:'Vous avez déjà récolté votre paye. Vous pouvez récolter votre prochaine paye dans' + moment().endOf('jour').fromNow() + '.'
+                description:'Vous avez déjà récolté votre paye. Vous pouvez récolter votre prochaine paye dans ' + moment().endOf('jour').fromNow() + '.'
             }})
             }
     }
