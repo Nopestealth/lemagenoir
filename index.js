@@ -150,7 +150,7 @@ bot.on('message', message => {
     if (message.content === prefix + "chaudron" ) {
         if (message.channel.id === process.env.MCHAUDRON) {
             if (message.member.roles.get(process.env.PRANNEE)) {
-                if (!userData[sender.id + message.guild.id].money >= 25) {
+                if (userData[sender.id + message.guild.id].money >= 25) {
                     message.channel.delete
                     message.channel.send(`**[Potage]** Bonjour. Je vous souhaite le bienvenue Au Bon Chaudron. Je suppose que rentres en Première Année ? J'ai pile ce qu'il te faut.`);
                     message.channel.send(`*Potage pointe deux chaudrons avec sa baguette, qui viennent se rapetissir dans un petit sac.*`);
@@ -159,13 +159,13 @@ bot.on('message', message => {
                     userData[sender.id + message.guild.id].money -= 25;
                     userData[sender.id + message.guild.id].chaudron = "Oui"
                 }
-                if (!userData[sender.id + message.guild.id].money <= 26) {
+                if (userData[sender.id + message.guild.id].money <= 26) {
                     message.channel.send(`**[Potage]** Mais, tu n'as pas assez d'argent pour payer tes fournitures. Reviens quand tu aura les moyens.`);
                     console.log(`Quelqu'un n'avait pas l'argent requis pour l'achat de Chaudron.`)
                 }
             }
             if (message.member.roles.get(process.env.DEANNEE)) {
-                if (!userData[sender.id + message.guild.id].money >= 25) {
+                if (userData[sender.id + message.guild.id].money >= 25) {
                     message.channel.send(`**[Potage]** Bonjour ${message.member}, tu rentres en deuxième année à Poudlard, j'ai tout ce qu'il te faut en réserve. Attend moi-là.`);
                     message.channel.send(`*Potage se dirige vers sa réserve, et elle revient avec deux chaudron, qu'elle fait léviter. Elle les fait se rapetissir dans un sac.*`);
                     message.channel.send(`**[Potage]** Voilà, ce sera plus simple pour les transporter. Cela fera 25 Gallions, s'il te plait.`);
@@ -173,7 +173,7 @@ bot.on('message', message => {
                     userData[sender.id + message.guild.id].money -= 25;
                     userData[sender.id + message.guild.id].chaudron = "Oui"
                 }
-                if (!userData[sender.id + message.guild.id].money <= 25) {
+                if (userData[sender.id + message.guild.id].money <= 25) {
                     message.channel.send(`**[Potage]** Mais, tu n'as pas assez d'argent pour payer tes fournitures. Reviens quand tu aura les moyens.`);
                     console.log(`Quelqu'un n'avait pas l'argent requis pour l'achat de Chaudron.`)
                 }
