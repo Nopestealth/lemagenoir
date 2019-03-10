@@ -315,7 +315,7 @@ bot.on('message', message => {
             message.channel.send(`**[Ollivander]** Bonjour ${message.member}, tu viens cherchez ta baguette c'est cela ? Je vais te chercher celle-ci.` );
             message.channel.send('*Le vendeur se dirige vers les rangées de baguettes, entreposées derrière lui. Il revient quelques secondes après, une boite à la main.*');
             message.channel.send('**[Ollivander]**Je crois que celle-ci sera parfaite...');
-            message.channel.send(`*Le vendeur vous a donné une boite, contenant la baguette : "${userData[sender.id + message.guild.id].baguette}"*`);
+            message.channel.send(`*Le vendeur vous a donné une boite, contenant votre baguette.`);
             message.channel.send(`**[7 Gallions vous ont étés retirés de votre compte.]**`);
             userData[sender.id + message.guild.id].money -= 7;
             userData[sender.id + message.guild.id].ollivander = "Oui"
