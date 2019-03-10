@@ -87,8 +87,8 @@ bot.on('message', message => {
     })
     
     if (message.content === prefix + "choixpeaux") {
-        if (message.channel.id === process.ENV.LCHOIXPEAUX) {
-            if (message.member.roles.get(process.ENV.ELEVE)) {
+        if (message.channel.id === process.env.LCHOIXPEAUX) {
+            if (message.member.roles.get(process.env.ELEVE)) {
                 message.reply("Tu as déjà été attribué(e) à une maison.");
                 console.log("Quelqu'un a essayé de s'attribuer une deuxième maison.")
             }
@@ -122,7 +122,7 @@ bot.on('message', message => {
     }   
     
     if (message.content === prefix + "informations") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Informations",
                 color: 0x00A1D7,
@@ -149,8 +149,8 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "chaudron" ) {
-        if (message.channel.id === process.ENV.MCHAUDRON) {
-            if (message.member.roles.get(process.ENV.PRANNEE)) {
+        if (message.channel.id === process.env.MCHAUDRON) {
+            if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Potage]** Bonjour. Je vous souhaite le bienvenue Au Bon Chaudron. Je suppose que rentres en Première Année ? J'ai pile ce qu'il te faut.`);
                 message.channel.send(`*Potage pointe deux chaudrons avec sa baguette, qui viennent se rapetissir dans un petit sac.*`);
                 message.channel.send(`**[Potage]** Ce sera plus facile pour le transport. Ils reprendront leurs tailles dès que tu les sortira du sac.`)
@@ -158,7 +158,7 @@ bot.on('message', message => {
                 userData[sender.id + message.guild.id].money -= 25;
                 userData[sender.id + message.guild.id].chaudron = "Oui"
             }
-            if (message.member.roles.get(process.ENV.DEANNEE)) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
                 message.channel.send(`**[Potage]** Bonjour ${message.member}, tu rentres en deuxième année à Poudlard, j'ai tout ce qu'il te faut en réserve. Attend moi-là.`);
                 message.channel.send(`*Potage se dirige vers sa réserve, et elle revient avec deux chaudron, qu'elle fait léviter. Elle les fait se rapetissir dans un sac.*`);
                 message.channel.send(`**[Potage]** Voilà, ce sera plus simple pour les transporter. Cela fera 25 Gallions, s'il te plait.`);
@@ -170,8 +170,8 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "hiboux") {
-        if (message.channel.id === process.ENV.MHIBOUX) {
-            if (message.member.roles.get(process.ENV.PRANNEE)) {
+        if (message.channel.id === process.env.MHIBOUX) {
+            if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Eeylops]** Bonjour ! Bienvenue au Royaume du Hiboux. Vous venez achetez un hiboux ? Suivez moi.`);
                 message.channel.send(`*Eeylops vous emmène dans une pièce intermédiaire, dans laquelle des hiboux sont entreposés dans de grandes cages, dont certaines ouvertes.`);
                 message.channel.send(`**[Eeylops]** Celui-ci, vous êtes sûr? Oui ? Très bien. *Helias sort et prend le hiboux sur son épaule, et le met dans une cage, qu'elle vous tend.*`);
@@ -179,7 +179,7 @@ bot.on('message', message => {
                 userData[sender.id + message.guild.id].money -= 40;
                 userData[sender.id + message.guild.id].royaumeduhiboux = "Oui"
             }
-            if (message.member.roles.get(process.ENV.DEANNEE)) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
                 message.channel.send(`**[Eeylops]** Bonjour ${message.member}. Tu viens acheté un hiboux ? Suit moi.`);
                 message.channel.send(`*Eeylops vous emmène dans une pièce intermédiaire, dans laquelle des hiboux sont entreposés dans de grandes cages, dont certaines ouvertes.`);
                 message.channel.send(`**[Eeylops]** Celui-ci, vous êtes sûr? Oui ? Très bien. *Helias sort et prend le hiboux sur son épaule, et le met dans une cage, qu'elle vous tend.*`);
@@ -191,12 +191,12 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "menagerie") {
-        if (message.channel.id === process.ENV.MMENAGERIE) {
-            if (message.member.roles.get(process.ENV.PRANNEE)) {
+        if (message.channel.id === process.env.MMENAGERIE) {
+            if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Helias]** Bonjour, et bienvenue à la Ménagerie Magique. Ici, vous pouvez acheter des chats ou des rats.`);
                 message.channel.send(`**[Helias]** Que souhaitez-vous ? [!chat pour acheter un chat | !rat pour acheter un rat]`);
             }
-            if (message.member.roles.get(process.ENV.DEANNEE)) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
                 message.channel.send(`**[Helias]** Oh, bonjour ${message.member}, tu viens acheter ton animal ?`);
                 message.channel.send(`**[Helias]** Que souhaites-tu ? [!chat pour acheter un chat | !rat pour acheter un rat]`);
             }
@@ -204,15 +204,15 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "chat") {
-        if (message.channel.id === process.ENV.MMENAGERIE) {
-            if (message.member.roles.get(process.ENV.PRANNEE)) {
+        if (message.channel.id === process.env.MMENAGERIE) {
+            if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Helias]** Très bien, suivez moi. *Helias vous emmène auprès d'un parc du magasin, dans lequel des chats gambadent.*`);
                 message.channel.send(`**[Helias]** Celui-ci, vous êtes sûr? Oui ? Très bien. *Helias sort et prend le chat dans ses mains, et le met dans une cage, qu'elle vous tend.*`);
                 message.channel.send(`**[40 Gallions vous ont étés retirés de votre compte.]**`);
                 userData[sender.id + message.guild.id].money -= 40;
                 userData[sender.id + message.guild.id].menagerie = "Oui"
             }
-            if (message.member.roles.get(process.ENV.DEANNEE)) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
                 message.channel.send(`**[Helias]** Très bien, suis moi. *Helias vous emmène auprès d'un parc du magasin, dans lequel des chats gambadent.*`);
                 message.channel.send(`**[Helias]** Celui-ci, tu es sûr? Oui ? Très bien. *Helias sort et prend le chat dans ses mains, et le met dans une cage, qu'elle vous tend.*`);
                 message.channel.send(`**[40 Gallions vous ont étés retirés de votre compte.]**`);
@@ -223,15 +223,15 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rat") {
-        if (message.channel.id === process.ENV.MMENAGERIE) {
-            if (message.member.roles.get(process.ENV.PRANNEE)) {
+        if (message.channel.id === process.env.MMENAGERIE) {
+            if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Helias]** Très bien, suivez moi. *Helias vous emmène auprès de plusieurs cages, contenant différents rats.*`);
                 message.channel.send(`**[Helias]** Celui-ci, vous êtes sûr? Oui ? Très bien. *Helias sort et prend le rat dans ses mains, et le met dans une cage, qu'elle vous tend.*`)
                 message.channel.send(`**[30 Gallions vous ont étés retirés de votre compte.]**`);
                 userData[sender.id + message.guild.id].money -= 30;
                 userData[sender.id + message.guild.id].menagerie = "Oui"
             }
-            if (message.member.roles.get(process.ENV.DEANNEE)) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
                 message.channel.send(`**[Helias]** Très bien, suis moi. *Helias vous emmène auprès de plusieurs cages, contenant différents rats.*`);
                 message.channel.send(`**[Helias]** Celui-ci, tu es sûr? Oui ? Très bien. *Helias sort et prend le rat dans ses mains, et le met dans une cage, qu'elle vous tend.*`)
                 message.channel.send(`**[30 Gallions vous ont étés retirés de votre compte.]**`);
@@ -242,8 +242,8 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "robes") {
-        if (message.channel.id === process.ENV.MROBES) {
-            if (message.member.roles.get(process.ENV.PRANNEE)) {
+        if (message.channel.id === process.env.MROBES) {
+            if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Madame Guipure]** Bonjour mon enfant. Toi, tu vas à Poudlard cette année ? Je ne me trompe jamais.`);
                 message.channel.send(`**[Madame Guipure]** Ne bouge pas, je vais te chercher ce qu'il te faut.`);
                 message.channel.send(`*Madame Guipure se dirige vers son arrière-boutique. Elle revient plusieurs minutes après, avec tout le matériel qu'il vous faut.*`);
@@ -253,7 +253,7 @@ bot.on('message', message => {
                 userData[sender.id + message.guild.id].money -= 35;
                 userData[sender.id + message.guild.id].guipure = "Oui"
             }
-            if (message.member.roles.get(process.ENV.DEANNEE)) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
                 message.channel.send(`**[Madame Guipure]** Bonjour ${message.member}, tu viens acheter tes nouvelles robes ?`);
                 message.channel.send(`**[Madame Guipure]** Je vais te chercher ce qu'il te faut, ne bouge pas.`);
                 message.channel.send(`*Madame Guipure se dirige vers son arrière-boutique. Elle revient plusieurs minutes après, avec tout le matériel qu'il vous faut.*`);
@@ -265,8 +265,8 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "manuels") {
-        if (message.channel.id === process.ENV.MMANUELS) {
-            if (message.member.roles.get(process.ENV.PRANNEE)) {
+        if (message.channel.id === process.env.MMANUELS) {
+            if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Fleury]** Oh, nous avons de la visite. Bonjour, et bienvenue chez Fleury et Bott. Vous venez pour vos fournitures c'est cela? En première année je suppose.`);
                 message.channel.send(`**[Fleury]** Je vais vous apporter ça. *Fleury fait un geste avec sa baguette, et une pile de livres, attachés les uns aux autres se déplacèrent jusqu'au comptoir.*`);
                 message.channel.send(`**[Fleury]** Voici, pour vous, jeune-homme. Cela fera 30 Gallions.`);
@@ -274,7 +274,7 @@ bot.on('message', message => {
                 userData[sender.id + message.guild.id].money -= 30;
                 userData[sender.id + message.guild.id].fleuryetbott = "Oui"
             }
-            if (message.member.roles.get(process.ENV.DEANNEE)) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
                 message.channel.send(`**[Fleury]** Bott, nous avons de la visite ! Bonjour ${message.member}, et bienvenue chez Fleury et Bott.`);
                 message.channel.send(`**[Fleury]** Tu viens acheter tes fournitures pour ta deuxième année, c'est ça? Il n'y a pas de soucis, je t'ammène ceci.`);
                 message.channel.send(`*Fleury fait un geste avec sa baguette, et une pile de livres, attachés les uns aux autres se déplacèrent jusqu'au comptoir.*`);
@@ -287,8 +287,8 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "apothicaire") {
-        if (message.channel.id === process.ENV.MAPOTHICAIRE) {
-            if (message.member.roles.get(process.ENV.PRANNEE)) {
+        if (message.channel.id === process.env.MAPOTHICAIRE) {
+            if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Jiggers]** Bonjour mon enfant. Tu fais ta rentrée dans l'école de Poudlard, c'est ça?`);
                 message.channel.send(`**[Slugg]** Ah, un futur élève de Poudlard ? *Dit un deuxième homme, proche du premier*`);
                 message.channel.send(`**[Slug]** Je vais lui chercher ses fournitures.`);
@@ -299,7 +299,7 @@ bot.on('message', message => {
                 userData[sender.id + message.guild.id].money -= 15;
                 userData[sender.id + message.guild.id].apothicaire = "Oui"
             }
-            if (message.member.roles.get(process.ENV.DEANNEE)) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
                 message.channel.send(`**[Jigger]** Bonjour ${message.member}. Tu viens chercher ton matériel pour ta deuxième année ?`);
                 message.channel.send(`**[Jiggers]** Je vois, *Jigers s'enfonce dans dans une cave, grâce à des escaliers, qu'ils remontent quelques secondes après.*`);
                 message.channel.send(`*Une pile d'objets volent derrière lui, et se pose finalement sur le comptoir.*`);
@@ -312,7 +312,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "baguette" ) {
-        if (message.channel.id === process.ENV.MOLLIVANDER) {
+        if (message.channel.id === process.env.MOLLIVANDER) {
             message.channel.send(`**[Ollivander]** Bonjour ${message.member}, tu viens cherchez ta baguette c'est cela ? Je vais te chercher celle-ci.` );
             message.channel.send('*Le vendeur se dirige vers les rangées de baguettes, entreposées derrière lui. Il revient quelques secondes après, une boite à la main.*');
             message.channel.send('**[Ollivander]**Je crois que celle-ci sera parfaite...');
@@ -323,7 +323,7 @@ bot.on('message', message => {
         }
     }
     if (message.content === prefix + "aide") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Aide Philosophale",
                 color: 0x00A1D7,
@@ -350,7 +350,7 @@ bot.on('message', message => {
         }
     }
     if (message.content === prefix + "rserdaigle") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Serdaigle !')
                 userData['Serdaigle'].points -= 10;
@@ -359,7 +359,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "aserdaigle") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Serdaigle !')
                 userData['Serdaigle'].points += 10;
@@ -368,7 +368,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rpoufsouffle") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Poufsouffle !')
                 userData['Poufsouffle'].points -= 10;
@@ -377,7 +377,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "apoufsouffle") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Poufsouffle !')
                 userData['Poufsouffle'].points += 10;
@@ -386,7 +386,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rserpentard") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Serpentard !')
                 userData['Serpentard'].points -= 10;
@@ -395,7 +395,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "aserpentard") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Serpentard !')
                 userData['Serpentard'].points += 10;
@@ -404,7 +404,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rgryffondor") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Gryffondor !')
                 userData['Gryffondor'].points -= 10;
@@ -414,8 +414,8 @@ bot.on('message', message => {
     
     
     if (message.content === prefix + "agryffondor") {
-        if (message.channel.id === process.ENV.COMMANDS) {
-            if (message.member.roles.get(process.ENV.PROFESSEUR)) {
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Gryffondor !')
                 userData['Gryffondor'].points += 10;
             }        
@@ -423,7 +423,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "points") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Points",
                 color: 0x00A1D7,
@@ -452,7 +452,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "gringotts" || message.content === prefix + "balance") {
-        if (message.channel.id === process.ENV.GRINGOTTS) {
+        if (message.channel.id === process.env.GRINGOTTS) {
             message.channel.send({embed:{
                 title: "Gringotts",
                 color: 0x0079FF,
@@ -476,7 +476,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "compte") {
-        if (message.channel.id === process.ENV.GRINGOTTS) {
+        if (message.channel.id === process.env.GRINGOTTS) {
             userData[sender.id + message.guild.id].gringotts = "Oui"
             message.channel.send({embed:{
                 title: "Gringotts",
@@ -503,7 +503,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "paye" || message.content === prefix + "daily") {
-        if (message.channel.id === process.ENV.COMMANDS) {
+        if (message.channel.id === process.env.COMMANDS) {
             if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
                 userData[sender.id + message.guild.id].lastDaily = moment().format('L')
                 userData[sender.id + message.guild.id].money += 50;
@@ -526,4 +526,4 @@ bot.on('message', message => {
         if (err) console.error(err);
     })
 }});
-bot.login(process.ENV.TOKEN);
+bot.login(process.env.TOKEN);
