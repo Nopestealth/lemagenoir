@@ -95,24 +95,24 @@ bot.on('message', message => {
             {
                 random()
                 if (randnum ==1) {
-                    message.reply("**[Choixpeaux]** Sage es-tu... Je ne vois qu'une option... SERDAIGLE !");
+                    message.channel.send("**[Choixpeaux]** Sage es-tu... Je ne vois qu'une option... SERDAIGLE !");
                     guildMember.addRoles([process.env.SERDAIGLE, process.env.ELEVE])
                     console.log(`${message.author.username} est devenu Serdaigle.`);
             }
                 if (randnum ==2) {
-                    message.reply("**[Choixpeaux]** Ambitieux est-tu... Seul... SERPENTARD pourras t'aider à grandir sur le chemin de la Puissance Ultime !");
+                    message.channel.send("**[Choixpeaux]** Ambitieux est-tu... Seul... SERPENTARD pourras t'aider à grandir sur le chemin de la Puissance Ultime !");
                     guildMember.addRoles([process.env.SERPENTARD, process.env.ELEVE])
                     console.log(`${message.author.username} est devenu Serpentard.`);
             }
 
                 if (randnum ==3) {
-                    message.reply("**[Choixpeaux]** Courageux es-tu... Je vois la seule maison qui t'acceptera... GRYFFONDOR !");
+                    message.channel.send("**[Choixpeaux]** Courageux es-tu... Je vois la seule maison qui t'acceptera... GRYFFONDOR !");
                     guildMember.addRoles([process.env.GRYFFONDOR, process.env.ELEVE])
                     console.log(`${message.author.username} est devenu Gryffondor.`);
             }
 
                 if (randnum ==4) {
-                    message.reply("**[Choixpeaux]** Modeste es-tu... Je crois, que seul POUFSOUFFLE aura le charme de te faire aimer Poudlard !");
+                    message.channel.send("**[Choixpeaux]** Modeste es-tu... Je crois, que seul POUFSOUFFLE aura le charme de te faire aimer Poudlard !");
                     guildMember.addRoles([process.env.POUFSOUFFLE, process.env.ELEVE])
                     console.log(`${message.author.username} est devenu Poufsouffle.`);
                 }
