@@ -146,6 +146,22 @@ bot.on('message', message => {
         }
     }
     
+    if (message.content === prefix + "mettrelabaguette") {
+        mention = message.mentions.users.first();
+
+        if (message.member.roles.get(process.env.STAFF)) {
+            if (mention == null) { return; }
+            message.delete();
+            mentionMessage = message.content.slice (50);
+            userData[mention.id + mention.guild.id].baguette = mentionMessage;
+            message.channel.send('Done !');
+        }
+    }
+
+    if (message.content === prefix + "montremoi") {
+        message.channel.send(`${userData[sender.id + message.guild.id].baguette}`);
+    }
+    
     if (message.content === prefix + "chaudron" ) {
         message.channel.delete        
         if (message.channel.id === process.env.MCHAUDRON) {
@@ -696,23 +712,7 @@ bot.on('message', message => {
                 color: 0x0079FF,
                 description:'Vous avez déjà récolté votre paye. Vous pourrez récolter votre prochaine paye dans 24h '
             }})
-            }
-    }
-    
-    if (message.content === prefix + "mettrelabaguette") {
-        mention = message.mentions.users.first();
-
-        if (message.member.roles.get(process.env.STAFF)) {
-            if (mention == null) { return; }
-            message.delete();
-            mentionMessage = message.content.slice (50);
-            userData[mention.id + mention.guild.id].baguette = mentionMessage;
-            message.channel.send('Done !');
         }
-    }
-
-    if (message.content === prefix + "montremoi") {
-        message.channel.send(`${userData[sender.id + message.guild.id].baguette}`);
     }
 
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
