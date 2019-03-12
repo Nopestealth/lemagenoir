@@ -153,7 +153,7 @@ bot.on('message', message => {
             if (mention == null) { return; }
             message.delete();
             mentionMessage = message.content.slice (50);
-            userData[mention.id + mention.guild.id].baguette = mentionMessage;
+            userData[message.mention.users.id + message.mentions.users.guild.id].baguette = mentionMessage;
             message.channel.send('Done !');
         }
     }
@@ -161,7 +161,7 @@ bot.on('message', message => {
     if (message.content === prefix + "montremoi") {
         message.channel.send(`${userData[sender.id + message.guild.id].baguette}`);
     }
-    
+
     if (message.content === prefix + "chaudron" ) {
         message.channel.delete        
         if (message.channel.id === process.env.MCHAUDRON) {
