@@ -701,17 +701,13 @@ bot.on('message', message => {
     
     if (message.content === prefix + "mettrelabaguette") {
         mention = message.mentions.users.first();
-        mentionMessage = message.content.slice (50);
 
         if (message.member.roles.get(process.env.STAFF)) {
-            if (mention == null) {
-                message.reply(`Veuillez mentionner quelqu'un.`);
-            }
-            else
-            {
-                userData[mention.id + mention.guild.id].baguette = mentionMessage;
-                message.reply('Réussit');
-            }
+            if (mention == null) { return; }
+            message.delete();
+            mentionMessage = message.content.slice (50);
+            userData[mention.id + mention.guild.id].baguette = mentionMessage;
+            message.channel.send('Done !');
         }
     }
 
