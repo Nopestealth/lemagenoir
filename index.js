@@ -49,6 +49,9 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].baguette) userData[sender.id + message.guild.id].baguette = "NONE"
 
+    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
+    if (!userData[sender.id + message.guild.id].thebaguette) userData[sender.id + message.guild.id].thebaguette = "Non"
+
     // Métier d'une personne
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].metier) userData[sender.id + message.guild.id].metier = "NONE"
@@ -146,15 +149,20 @@ bot.on('message', message => {
         }
     }
     
-    if (message.content === prefix + "mettrelabaguette") {
-        mention = message.mentions.users.first();
-
-        if (message.member.roles.get(process.env.STAFF)) {
-            if (mention == null) { return; }
-            message.delete();
-            mentionMessage = message.content.slice (50);
-            userData[message.mention.users.id + message.mentions.users.guild.id].baguette = mentionMessage;
-            message.channel.send('Done !');
+    if (message.content === prefix + "setwand") {
+        const messageSlice = message.content.slice(prefix.lenght).trim();
+        if (message.channel.id === process.env.THEWAND) {
+            if (userData[sender.id + message.guild.id].thebaguette = "Non") {
+                userData[sender.id + message.guild.id].baguette = messageSlice.
+                userData[sender.id + message.guild.id].thebaguette = "Oui"
+                message.channel.send('Done !');
+            }
+            else
+            {
+                if (userData[sender.id + message.guild.id].thebaguette = "Oui") {
+                    message.channel.send (`Vous ne pouvez plus faire celà.`)
+                }
+            }
         }
     }
 
