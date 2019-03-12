@@ -468,7 +468,7 @@ bot.on('message', message => {
     if (message.content === prefix + "baguette" ) {
         message.channel.delete
         if (message.channel.id === process.env.MOLLIVANDER) {
-            if (userData[sender.id + message.guild].money > 7.) {
+            if (userData[sender.id + message.guild.id].money > 7.) {
                 message.channel.send(`**[Ollivander]** Bonjour ${message.member}, tu viens cherchez ta baguette c'est cela ? Je vais te chercher celle-ci.` );
                 message.channel.send('*Le vendeur se dirige vers les rangées de baguettes, entreposées derrière lui. Il revient quelques secondes après, une boite à la main.*');
                 message.channel.send('**[Ollivander]**Je crois que celle-ci sera parfaite...');
