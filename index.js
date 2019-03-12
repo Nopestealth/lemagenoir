@@ -24,7 +24,6 @@ bot.on('message', message => {
     const guildMember = message.member;
     // Attribue le mot Sender à la variable.
     let sender = message.author;
-    let mention = message.mentions.users.first();
     
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 0.
@@ -701,9 +700,10 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "mettrelabaguette") {
-        let mentionMessage = message.content.slice (50);
-        
-        if (message.member.roles.get(process.env.ADMINISTRATEUR)) {
+        mention = message.mentions.users.first();
+        mentionMessage = message.content.slice (50);
+
+        if (message.member.roles.get(process.env.STAFF)) {
             if (mention == null) { return; }
             userData[mention.id + mention.guild.id].baguette = mentionMessage;
         }
