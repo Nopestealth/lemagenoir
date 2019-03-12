@@ -1,8 +1,9 @@
 // Ce dont le bot a besoins.
 const Discord = require('discord.js');
 const fs = require('fs');
+const moment = require('moment');
+const eco = require('discord-economy')
 const bot = new Discord.Client ();
-const moment = require("moment");
  
 // Fonction de réponse aléatoire
 function random(min, max){
@@ -148,10 +149,10 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "chaudron" ) {
+        message.channel.delete        
         if (message.channel.id === process.env.MCHAUDRON) {
             if (message.member.roles.get(process.env.PRANNEE)) {
-                if (userData[sender.id + message.guild.id].money >= 25) {
-                    message.channel.delete
+                if (userData[sender.id + message.guild.id].money > 25.) {
                     message.channel.send(`**[Potage]** Bonjour. Je vous souhaite le bienvenue Au Bon Chaudron. Je suppose que rentres en Première Année ? J'ai pile ce qu'il te faut.`);
                     message.channel.send(`*Potage pointe deux chaudrons avec sa baguette, qui viennent se rapetissir dans un petit sac.*`);
                     message.channel.send(`**[Potage]** Ce sera plus facile pour le transport. Ils reprendront leurs tailles dès que tu les sortira du sac.`)
@@ -165,7 +166,7 @@ bot.on('message', message => {
                 }
             }
             if (message.member.roles.get(process.env.DEANNEE)) {
-                if (userData[sender.id + message.guild.id].money >= 25) {
+                if (userData[sender.id + message.guild.id].money > 25.) {
                     message.channel.send(`**[Potage]** Bonjour ${message.member}, tu rentres en deuxième année à Poudlard, j'ai tout ce qu'il te faut en réserve. Attend moi-là.`);
                     message.channel.send(`*Potage se dirige vers sa réserve, et elle revient avec deux chaudron, qu'elle fait léviter. Elle les fait se rapetissir dans un sac.*`);
                     message.channel.send(`**[Potage]** Voilà, ce sera plus simple pour les transporter. Cela fera 25 Gallions, s'il te plait.`);
@@ -182,6 +183,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "hiboux") {
+        message.channel.delete  
         if (message.channel.id === process.env.MHIBOUX) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Eeylops]** Bonjour ! Bienvenue au Royaume du Hiboux. Vous venez achetez un hiboux ? Suivez moi.`);
@@ -203,6 +205,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "menagerie") {
+        message.channel.delete  
         if (message.channel.id === process.env.MMENAGERIE) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Helias]** Bonjour, et bienvenue à la Ménagerie Magique. Ici, vous pouvez acheter des chats ou des rats.`);
@@ -216,6 +219,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "chat") {
+        message.channel.delete  
         if (message.channel.id === process.env.MMENAGERIE) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Helias]** Très bien, suivez moi. *Helias vous emmène auprès d'un parc du magasin, dans lequel des chats gambadent.*`);
@@ -235,6 +239,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rat") {
+        message.channel.delete
         if (message.channel.id === process.env.MMENAGERIE) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Helias]** Très bien, suivez moi. *Helias vous emmène auprès de plusieurs cages, contenant différents rats.*`);
@@ -254,6 +259,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "robes") {
+        message.channel.delete
         if (message.channel.id === process.env.MROBES) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Madame Guipure]** Bonjour mon enfant. Toi, tu vas à Poudlard cette année ? Je ne me trompe jamais.`);
@@ -278,6 +284,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "manuels") {
+        message.channel.delete
         if (message.channel.id === process.env.MMANUELS) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Fleury]** Oh, nous avons de la visite. Bonjour, et bienvenue chez Fleury et Bott. Vous venez pour vos fournitures c'est cela? En première année je suppose.`);
@@ -300,6 +307,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "apothicaire") {
+        message.channel.delete
         if (message.channel.id === process.env.MAPOTHICAIRE) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Jiggers]** Bonjour mon enfant. Tu fais ta rentrée dans l'école de Poudlard, c'est ça?`);
@@ -325,6 +333,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "baguette" ) {
+        message.channel.delete
         if (message.channel.id === process.env.MOLLIVANDER) {
             message.channel.send(`**[Ollivander]** Bonjour ${message.member}, tu viens cherchez ta baguette c'est cela ? Je vais te chercher celle-ci.` );
             message.channel.send('*Le vendeur se dirige vers les rangées de baguettes, entreposées derrière lui. Il revient quelques secondes après, une boite à la main.*');
@@ -336,6 +345,7 @@ bot.on('message', message => {
         }
     }
     if (message.content === prefix + "aide") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Aide Philosophale",
@@ -363,6 +373,7 @@ bot.on('message', message => {
         }
     }
     if (message.content === prefix + "rserdaigle") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Serdaigle !')
@@ -372,6 +383,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "aserdaigle") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Serdaigle !')
@@ -381,6 +393,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rpoufsouffle") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Poufsouffle !')
@@ -390,6 +403,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "apoufsouffle") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Poufsouffle !')
@@ -399,6 +413,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rserpentard") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Serpentard !')
@@ -408,6 +423,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "aserpentard") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Serpentard !')
@@ -417,6 +433,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rgryffondor") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Gryffondor !')
@@ -427,6 +444,7 @@ bot.on('message', message => {
     
     
     if (message.content === prefix + "agryffondor") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Gryffondor !')
@@ -436,6 +454,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "points") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Points",
@@ -465,6 +484,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "gringotts" || message.content === prefix + "balance") {
+        message.channel.delete
         if (message.channel.id === process.env.GRINGOTTS) {
             message.channel.send({embed:{
                 title: "Gringotts",
@@ -489,6 +509,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "compte") {
+        message.channel.delete
         if (message.channel.id === process.env.GRINGOTTS) {
             userData[sender.id + message.guild.id].gringotts = "Oui"
             message.channel.send({embed:{
@@ -516,10 +537,11 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "paye" || message.content === prefix + "daily") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
                 userData[sender.id + message.guild.id].lastDaily = moment().format('L')
-                userData[sender.id + message.guild.id].money += 50;
+                userData[sender.id + message.guild.id].money += 5;
                 message.channel.send({embed: {
                     title:'Jour de Paye',
                     color: 0x0079FF,
