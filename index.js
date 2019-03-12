@@ -704,8 +704,14 @@ bot.on('message', message => {
         mentionMessage = message.content.slice (50);
 
         if (message.member.roles.get(process.env.STAFF)) {
-            if (mention == null) { return; }
-            userData[mention.id + mention.guild.id].baguette = mentionMessage;
+            if (mention == null) {
+                message.reply(`Veuillez mentionner quelqu'un.`);
+            }
+            else
+            {
+                userData[mention.id + mention.guild.id].baguette = mentionMessage;
+                message.reply('Réussit');
+            }
         }
     }
 
