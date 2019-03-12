@@ -24,6 +24,7 @@ bot.on('message', message => {
     const guildMember = message.member;
     // Attribue le mot Sender à la variable.
     let sender = message.author;
+    let mention = message.mentions.users.first();
     
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 0.
@@ -653,6 +654,7 @@ bot.on('message', message => {
     if (message.content === prefix + "compte") {
         message.channel.delete
         if (message.channel.id === process.env.GRINGOTTS) {
+            userData[sender.id + message.guild.id].money += 120.
             userData[sender.id + message.guild.id].gringotts = "Oui"
             message.channel.send({embed:{
                 title: "Gringotts",
@@ -674,7 +676,6 @@ bot.on('message', message => {
                 }]
             }})
             message.channel.send(`**[150 Gallions ont été ajoutés à votre compte, suite à sa création.]**`);
-            userData[sender.id + message.guild.id].money += 150.
         }
     }
     
@@ -697,6 +698,15 @@ bot.on('message', message => {
                 description:'Vous avez déjà récolté votre paye. Vous pourrez récolter votre prochaine paye dans 24h '
             }})
             }
+    }
+    
+    if (message.content === prefix + "mettrelabaguette") {
+        let mentionMessage = message.content.slice (50);
+        
+        if (message.member.roles.get(process.env.ADMINISTRATEUR)) {
+            if (mention == null) { return; }
+            userData[mention.id + mention.guild.id].baguette = mentionMessage;
+        }
     }
 
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
