@@ -84,6 +84,7 @@ bot.on('message', message => {
     })
     
     if (message.content === prefix + "choixpeaux") {
+        message.channel.delete
         if (message.channel.id === process.env.LCHOIXPEAUX) {
             if (message.member.roles.get(process.env.ELEVE)) {
                 message.reply("**[Choixpeaux]** Tu as déjà été attribué(e) à une maison.");
@@ -119,6 +120,7 @@ bot.on('message', message => {
     }   
     
     if (message.content === prefix + "informations") {
+        message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Informations",
