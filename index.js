@@ -715,6 +715,10 @@ bot.on('message', message => {
         }
     }
 
+    if (message.content === prefix + "montremoi") {
+        message.channel.send(`${userData[sender.id + message.guild.id].baguette}`);
+    }
+
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error(err);
     })
