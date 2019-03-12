@@ -153,7 +153,7 @@ bot.on('message', message => {
         const messageSlice = message.content.slice(prefix.lenght).trim();
         if (message.channel.id === process.env.THEWAND) {
             if (userData[sender.id + message.guild.id].thebaguette = "Non") {
-                userData[sender.id + message.guild.id].baguette = messageSlice.
+                userData[sender.id + message.guild.id].baguette = messageSlice;
                 userData[sender.id + message.guild.id].thebaguette = "Oui"
                 message.channel.send('Done !');
             }
