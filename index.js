@@ -257,7 +257,6 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "choixpeaux") {
-        message.delete
         if (message.channel.id === process.env.LCHOIXPEAUX) {
             if (message.member.roles.get(process.env.ELEVE)) {
                 message.reply("**[Choixpeaux]** Tu as déjà été attribué(e) à une maison.");
@@ -293,7 +292,6 @@ bot.on('message', message => {
     }   
     
     if (message.content === prefix + "informations") {
-        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Informations",
@@ -320,8 +318,7 @@ bot.on('message', message => {
         }
     }
     
-    if (message.content === prefix + "chaudron" ) {
-        message.delete        
+    if (message.content === prefix + "chaudron" ) {       
         if (message.channel.id === process.env.MCHAUDRON) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 25.) {
@@ -354,8 +351,7 @@ bot.on('message', message => {
         }
     }
     
-    if (message.content === prefix + "hiboux") {
-        message.delete  
+    if (message.content === prefix + "hiboux") {        
         if (message.channel.id === process.env.MHIBOUX) {
             if (userData[sender.id + message.guild.id].animal = "Non") {
                 if (message.member.roles.get(process.env.PRANNEE)) {
@@ -404,7 +400,6 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "menagerie") {
-        message.delete  
         if (message.channel.id === process.env.MMENAGERIE) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Helias]** Bonjour, et bienvenue à la Ménagerie Magique. Ici, vous pouvez acheter des chats ou des rats.`);
@@ -417,8 +412,7 @@ bot.on('message', message => {
         }
     }
         
-    if (message.content === prefix + "chat") {
-        message.delete  
+    if (message.content === prefix + "chat") { 
         if (message.channel.id === process.env.MMENAGERIE) {
             if (userData[sender.id + message.guild.id].animal = "Non") {
                 if (message.member.roles.get(process.env.PRANNEE)) {
@@ -466,7 +460,6 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rat") {
-        message.delete
         if (message.channel.id === process.env.MMENAGERIE) {
             if (userData[sender.id + message.guild.id].animal = "Oui") { 
                 if (message.member.roles.get(process.env.PRANNEE)) {
@@ -513,7 +506,6 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "robes") {
-        message.delete
         if (message.channel.id === process.env.MROBES) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 35.) {
@@ -555,7 +547,6 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "manuels") {
-        message.delete
         if (message.channel.id === process.env.MMANUELS) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 30.) {
@@ -596,7 +587,6 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "apothicaire") {
-        message.delete
         if (message.channel.id === process.env.MAPOTHICAIRE) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 15.) {
@@ -640,7 +630,6 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "baguette" ) {
-        message.delete
         if (message.channel.id === process.env.MOLLIVANDER) {
             if (userData[sender.id + message.guild.id].money > 7.) {
                 message.channel.send(`**[Ollivander]** Bonjour ${message.member}, tu viens cherchez ta baguette c'est cela ? Je vais te chercher celle-ci.` );
@@ -661,7 +650,6 @@ bot.on('message', message => {
         }
     }
     if (message.content === prefix + "aide") {
-        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Aide Philosophale",
@@ -672,135 +660,12 @@ bot.on('message', message => {
 !paye | Permet de reçevoir sa paye (Tout les 24h)
 !points | Permet de voir le nombre de points de chaques maisons.`,
                     inline: false
-                },
-                {
-                    name: "Professeur",
-                    value: `!agryffondor | Ajoute 10 points à Gryffondor.
-!rgryffondor | Retire 10 points à Gryffondor.
-!apoufsouffle | Ajoute 10 points à Poufsouffle.
-!rpousouffle | Retire 10 points à Poufsouffle.
-!aserdaigle | Ajoute 10 points à Serdaigle.
-!rserdaigle | Retire 10 points à Serdaigle.
-!aserpentard | Ajoute 10 points à Serpentard.
-!rserpentard | Retire 10 points à Serpentard.`,
-                    inline: false
-                }]
-            }})
-        }
-    }
-    if (message.content === prefix + "rserdaigle") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            if (message.member.roles.get(process.env.PROFESSEUR)) {
-                message.reply('**[Compteur]** Retrait de 10 points pour Serdaigle !')
-                userData['Serdaigle'].points -= 10;
-            }
-        }
-    }
-    
-    if (message.content === prefix + "aserdaigle") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            if (message.member.roles.get(process.env.PROFESSEUR)) {
-                message.reply('**[Compteur]** Ajout de 10 points pour Serdaigle !')
-                userData['Serdaigle'].points += 10;
-            }
-        }    
-    }
-
-    if (message.content === prefix + "rpoufsouffle") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            if (message.member.roles.get(process.env.PROFESSEUR)) {
-                message.reply('**[Compteur]** Retrait de 10 points pour Poufsouffle !')
-                userData['Poufsouffle'].points -= 10;
-            }
-        }
-    }
-    
-    if (message.content === prefix + "apoufsouffle") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            if (message.member.roles.get(process.env.PROFESSEUR)) {
-                message.reply('**[Compteur]** Ajout de 10 points pour Poufsouffle !')
-                userData['Poufsouffle'].points += 10;
-            }
-        }
-    }
-
-    if (message.content === prefix + "rserpentard") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            if (message.member.roles.get(process.env.PROFESSEUR)) {
-                message.reply('**[Compteur]** Retrait de 10 points pour Serpentard !')
-                userData['Serpentard'].points -= 10;
-            }
-        }
-    }
-
-    if (message.content === prefix + "aserpentard") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            if (message.member.roles.get(process.env.PROFESSEUR)) {
-                message.reply('**[Compteur]** Ajout de 10 points pour Serpentard !')
-                userData['Serpentard'].points += 10;
-            }
-        }
-    }
-
-    if (message.content === prefix + "rgryffondor") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            if (message.member.roles.get(process.env.PROFESSEUR)) {
-                message.reply('**[Compteur]** Retrait de 10 points pour Gryffondor !')
-                userData['Gryffondor'].points -= 10;
-            }
-        }
-    }
-    
-    
-    if (message.content === prefix + "agryffondor") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            if (message.member.roles.get(process.env.PROFESSEUR)) {
-                message.reply('**[Compteur]** Ajout de 10 points pour Gryffondor !')
-                userData['Gryffondor'].points += 10;
-            }        
-        }
-    }
-
-    if (message.content === prefix + "points") {
-        message.delete
-        if (message.channel.id === process.env.COMMANDS) {
-            message.channel.send({embed: {
-                title: "Points",
-                color: 0x00A1D7,
-                fields: [{
-                    name: "Serpentard",
-                    value: userData['Serpentard'].points,
-                    inline: true
-                },
-                {
-                    name: "Gryffondor",
-                    value: userData['Gryffondor'].points,
-                    inline: true
-                },
-                {
-                    name: "Poufsouffle",
-                    value: userData['Poufsouffle'].points,
-                    inline: true
-                },
-                {
-                    name: "Serdaigle",
-                    value: userData['Serdaigle'].points,
-                    inline: true
                 }]
             }})
         }
     }
 
     if (message.content === prefix + "gringotts" || message.content === prefix + "balance") {
-        message.delete
         if (message.channel.id === process.env.GRINGOTTS) {
             message.channel.send({embed:{
                 title: "Gringotts",
@@ -825,7 +690,6 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "compte") {
-        message.delete
         if (message.channel.id === process.env.GRINGOTTS) {
             userData[sender.id + message.guild.id].gringotts = "Oui"
             message.channel.send({embed:{
@@ -852,8 +716,7 @@ bot.on('message', message => {
         }
     }
     
-    if (message.content === prefix + "paye" || message.content === prefix + "daily") {
-        message.delete
+    if (message.content === prefix + "paye") {
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.ADULTE)) {
                 if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
