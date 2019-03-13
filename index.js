@@ -36,7 +36,7 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = "Not Collected";
 
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-    if (!userData[sender.id + message.guild.id].protego) userData[sender.id + message.guild.id].protego = "Non";
+    if (!userData[sender.id + message.guild.id].protego) userData[sender.id + message.guild.id].protego = "Non"
 
     // Créer les points de Serpentards.
     if (!userData['Serpentard']) userData['Serpentard'] = {}
@@ -101,19 +101,21 @@ bot.on('message', message => {
     })
     
     if (message.content === prefix + "aprotego") {
-        userData[sender.id + message.guild.id].protego = "Protego"
         console.log(`Admis`)
+        userData[sender.id + message.guild.id].protego = "Protego"
+        message.channel.send(`ADMIS`);    
     }
 
     if (message.content === prefix + "protego") {
         if (message.member.roles.get(process.env.ROLEPLAY)) {
-            if (userData[sender.id + message.guild.id].protego = "Non") {
-                message.channel.send(`Tu ne peux pas.`);
+            if (userData[sender.id + message.guild.id].protego = "Protego") {
+                message.channel.send(`Tu peux.`);
+
             }
             else
             {
-                if (userData[sender.id + message.guild.id].protego = "Protego") {
-                    message.channel.send(`Tu peux.`);
+                if (userData[sender.id + message.guild.id].protego = "Non") {
+                    message.channel.send(`Tu ne peux pas.`);
                 }
             }
         }
