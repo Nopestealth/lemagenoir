@@ -875,22 +875,46 @@ bot.on('message', message => {
     if (message.content === prefix + "paye" || message.content === prefix + "daily") {
         message.channel.delete
         if (message.channel.id === process.env.COMMANDS) {
-            if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
-                userData[sender.id + message.guild.id].lastDaily = moment().format('L')
-                userData[sender.id + message.guild.id].money += 5;
+            if (message.member.roles.get(process.env.ADULTE)) {
+                if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
+                    userData[sender.id + message.guild.id].lastDaily = moment().format('L')
+                    userData[sender.id + message.guild.id].money += 75;
+                        message.channel.send({embed: {
+                        title:'Jour de Paye',
+                        color: 0x0079FF,
+                        description:'Vous récoltez 75 Gallions, ajouté à votre account!'
+                
+                    }})
+                } else {
                 message.channel.send({embed: {
                     title:'Jour de Paye',
                     color: 0x0079FF,
-                    description:'Vous récoltez 5 Gallions, ajouté à votre account!'
-                
+                    description:'Vous avez déjà récolté votre paye. Vous pourrez récolter votre prochaine paye dans 24h '
                 }})
-            } else {
-            message.channel.send({embed: {
-                title:'Jour de Paye',
-                color: 0x0079FF,
-                description:'Vous avez déjà récolté votre paye. Vous pourrez récolter votre prochaine paye dans 24h '
-            }})
+                }
             }
+            else
+            {
+                if (message.member.roles.get(process.env.ELEVE)) {
+                    if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
+                        userData[sender.id + message.guild.id].lastDaily = moment().format('L')
+                        userData[sender.id + message.guild.id].money += 75;
+                            message.channel.send({embed: {
+                            title:'Jour de Paye',
+                            color: 0x0079FF,
+                            description:'Vous récoltez 75 Gallions, ajouté à votre account!'
+                    
+                        }})
+                    } else {
+                    message.channel.send({embed: {
+                        title:'Jour de Paye',
+                        color: 0x0079FF,
+                        description:'Vous avez déjà récolté votre paye. Vous pourrez récolter votre prochaine paye dans 24h '
+                    }})
+                    }
+
+            }
+        }
     }
 
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
