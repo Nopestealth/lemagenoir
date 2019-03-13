@@ -325,7 +325,6 @@ bot.on('message', message => {
                 fields: [{
                     name: "Personnage",
                     value: `**Prénom Nom :** ${message.member}`,
-
                     inline: false
                 },
                 {
