@@ -255,26 +255,6 @@ bot.on('message', message => {
             }
         }
     }
-
-    if (message.content === "Debout!") {
-        if (userData[sender.id + message.guild.id].balais = "Oui") {
-            random()
-            if (randnum ==1) {
-                message.channel.send(`*${message.member} a réussit à lever son balais`);
-                console.log('Il arrive a lever son balais !')
-            }
-            if (randnum ==2) {
-                message.channel.send(`*${message.member} n'a pas réussit à lever son balais`);
-            }
-        }
-        else
-        {
-            if (userData[sender.id + message.guild.id].balais = "Non") {
-                message.channel.send(`*${message.member} n'a pas de balais, et ne pas en faire lever un.`);
-                console.log(`Quelqu'un n'a pas de balais pour utiliser DEBOUT!`)
-            }
-        }
-    }
     
     if (message.content === prefix + "choixpeaux") {
         message.channel.delete
