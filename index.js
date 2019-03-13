@@ -98,7 +98,6 @@ bot.on('message', message => {
     })
     
     if (message.content === prefix + "oakshaft79") {
-        message.channel.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 95.) {
@@ -126,11 +125,14 @@ bot.on('message', message => {
                     }
                 }
             }
+            else
+            {
+                message.channel.send(`Tu n'es pas dans le bon channel.`);
+            }
         }
     }
 
     if (message.content === prefix + "brossdur2") {
-        message.channel.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 115.) {
@@ -162,7 +164,6 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "brossdur3") {
-        message.channel.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 135.) {
@@ -194,7 +195,6 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "comete180") {
-        message.channel.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 165.) {
@@ -226,7 +226,6 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "nimbus1000") {
-        message.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 255.) {
