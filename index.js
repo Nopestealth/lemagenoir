@@ -20,6 +20,7 @@ function random(min, max){
 
 // JSON Files
 let userData = JSON.parse(fs.readFileSync('JSON/userData.json', 'utf8'));
+let spellData = JSON.parse(fs.readFileSync('JSON/spellData.json', 'utf8'));
 
 bot.on('ready', () => {
     bot.user.setActivity('vous aider');
@@ -34,6 +35,9 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 0.
     if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = "Not Collected";
+
+    if (!spellData[sender.id + message.guild.id]) spellData[sender.id + message.guild.id] = {}
+    if (!spellData[sender.id + message.guild.id].protego) spellData[sender.id + message.guild.id].protego = "Non";
 
     // Créer les points de Serpentards.
     if (!userData['Serpentard']) userData['Serpentard'] = {}
@@ -96,6 +100,29 @@ bot.on('message', message => {
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error (err);
     })
+
+    fs.writeFile('JSON/spellData.json', JSON.stringify(spellData), (err) => {
+        if (err) console.error (err);
+    })
+    
+    if (message.content === prefix + "aprotego") {
+        spellData[sender.id + message.guild.id.protego] = "Non"
+        console.log(`Admis`)
+    }
+
+    if (message.content === prefix + "protego") {
+        if (message.member.roles.get(process.env.ROLEPLAY)) {
+            if (spellData[sender.id + message.guild.id].protego = "Non") {
+                message.channel.send(`Tu ne peux pas.`);
+            }
+            else
+            {
+                if (spellData[sender.id + message.guild.id].protego = "Protego") {
+                    message.channel.send(`Tu peux.`);
+                }
+            }
+        }
+    }
     
     if (message.content === prefix + "oakshaft79") {
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
@@ -660,6 +687,119 @@ bot.on('message', message => {
 !paye | Permet de reçevoir sa paye (Tout les 24h)
 !points | Permet de voir le nombre de points de chaques maisons.`,
                     inline: false
+                },
+                {
+                    name: "Professeur",
+                    value: `!agryffondor | Ajoute 10 points à Gryffondor.
+!rgryffondor | Retire 10 points à Gryffondor.
+!apoufsouffle | Ajoute 10 points à Poufsouffle.
+!rpousouffle | Retire 10 points à Poufsouffle.
+!aserdaigle | Ajoute 10 points à Serdaigle.
+!rserdaigle | Retire 10 points à Serdaigle.
+!aserpentard | Ajoute 10 points à Serpentard.
+!rserpentard | Retire 10 points à Serpentard.`,
+                    inline: false
+                }]
+            }})
+        }
+    }
+    if (message.content === prefix + "rserdaigle") {
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
+                message.reply('**[Compteur]** Retrait de 10 points pour Serdaigle !')
+                userData['Serdaigle'].points -= 10;
+            }
+        }
+    }
+    
+    if (message.content === prefix + "aserdaigle") {
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
+                message.reply('**[Compteur]** Ajout de 10 points pour Serdaigle !')
+                userData['Serdaigle'].points += 10;
+            }
+        }    
+    }
+
+    if (message.content === prefix + "rpoufsouffle") {
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
+                message.reply('**[Compteur]** Retrait de 10 points pour Poufsouffle !')
+                userData['Poufsouffle'].points -= 10;
+            }
+        }
+    }
+    
+    if (message.content === prefix + "apoufsouffle") {        
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
+                message.reply('**[Compteur]** Ajout de 10 points pour Poufsouffle !')
+                userData['Poufsouffle'].points += 10;
+            }
+        }
+    }
+
+    if (message.content === prefix + "rserpentard") {
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
+                message.reply('**[Compteur]** Retrait de 10 points pour Serpentard !')
+                userData['Serpentard'].points -= 10;
+            }
+        }
+    }
+
+    if (message.content === prefix + "aserpentard") {
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
+                message.reply('**[Compteur]** Ajout de 10 points pour Serpentard !')
+                userData['Serpentard'].points += 10;
+            }
+        }
+    }
+
+    if (message.content === prefix + "rgryffondor") {
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
+                message.reply('**[Compteur]** Retrait de 10 points pour Gryffondor !')
+                userData['Gryffondor'].points -= 10;
+            }
+        }
+    }
+    
+    
+    if (message.content === prefix + "agryffondor") {
+        if (message.channel.id === process.env.COMMANDS) {
+            if (message.member.roles.get(process.env.PROFESSEUR)) {
+                message.reply('**[Compteur]** Ajout de 10 points pour Gryffondor !')
+                userData['Gryffondor'].points += 10;
+            }        
+        }
+    }
+
+    if (message.content === prefix + "points") {
+        if (message.channel.id === process.env.COMMANDS) {
+            message.channel.send({embed: {
+                title: "Points",
+                color: 0x00A1D7,
+                fields: [{
+                    name: "Serpentard",
+                    value: userData['Serpentard'].points,
+                    inline: true
+                },
+                {
+                    name: "Gryffondor",
+                    value: userData['Gryffondor'].points,
+                    inline: true
+                },
+                {
+                    name: "Poufsouffle",
+                    value: userData['Poufsouffle'].points,
+                    inline: true
+                },
+                {
+                    name: "Serdaigle",
+                    value: userData['Serdaigle'].points,
+                    inline: true
                 }]
             }})
         }
@@ -716,7 +856,7 @@ bot.on('message', message => {
         }
     }
     
-    if (message.content === prefix + "paye") {
+    if (message.content === prefix + "paye" || message.content === prefix + "daily") {
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.ADULTE)) {
                 if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
@@ -763,5 +903,10 @@ bot.on('message', message => {
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error(err);
     })
+
+    fs.writeFile('JSON/spellData.json', JSON.stringify(spellData), (err) => {
+        if (err) console.error (err);
+    })
+    
 }});
 bot.login(process.env.TOKEN);
