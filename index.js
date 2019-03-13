@@ -38,6 +38,9 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].protego) userData[sender.id + message.guild.id].protego = "Non"
 
+    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
+    if (!userData[sender.id + message.guild.id].protegod) userData[sender.id + message.guild.id].protegod = "Non"
+
     // Créer les points de Serpentards.
     if (!userData['Serpentard']) userData['Serpentard'] = {}
     if (!userData['Serpentard'].points) userData['Serpentard'].points = 0.
@@ -101,15 +104,15 @@ bot.on('message', message => {
     })
     
     if (message.content === prefix + "aprotego") {
+        userData[sender.id + message.guild.id].protegod = "Oui"
         userData[sender.id + message.guild.id].protego = "Protego"
         message.channel.send(`ADMIS`);    
     }
 
     if (message.content === prefix + "protego") {
         if (message.member.roles.get(process.env.ROLEPLAY)) {
-            if (userData[sender.id + message.guild.id].protego = "Protego") {
+            if (userData[sender.id + message.guild.id].protegod = "Oui") {
                 message.channel.send(`Tu peux.`);
-
             }
             else
             {
@@ -334,7 +337,9 @@ bot.on('message', message => {
 **Manuels :** ${userData[sender.id + message.guild.id].fleuryetbott}                
 **Robes :** ${userData[sender.id + message.guild.id].guipure}
 **Chaudron :** ${userData[sender.id + message.guild.id].chaudron}
-**Balais :** ${userData[sender.id + message.guild.id].balaisvolant}`,
+**Balais :** ${userData[sender.id + message.guild.id].balaisvolant}
+**Protego :** ${userData[sender.id + message.guild.id].protego}
+**Protegod :** ${userData[sender.id + message.guild.id].protegod}`,
                     inline: false
                 }]
             }})
