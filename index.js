@@ -843,7 +843,7 @@ bot.on('message', message => {
     }
 
     if (message.content === aprefix + "nimbus1000") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 255.) {
