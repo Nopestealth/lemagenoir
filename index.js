@@ -35,12 +35,6 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 0.
     if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = "Not Collected";
 
-    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-    if (!userData[sender.id + message.guild.id].protego) userData[sender.id + message.guild.id].protego = "Non"
-
-    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-    if (!userData[sender.id + message.guild.id].protegod) userData[sender.id + message.guild.id].protegod = "Non"
-
     // Créer les points de Serpentards.
     if (!userData['Serpentard']) userData['Serpentard'] = {}
     if (!userData['Serpentard'].points) userData['Serpentard'].points = 0.
@@ -96,32 +90,14 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].balais) userData[sender.id + message.guild.id].balais = "Non"
 
+    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
+    if (!userData[sender.id + message.guild.id].compte) userData[sender.id + message.guild.id].compte = "Non"
     // Attribue un PREFIX à notre bot.
     let prefix = "!"
 
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error (err);
     })
-    
-    if (message.content === prefix + "aprotego") {
-        userData[sender.id + message.guild.id].protegod = "Oui"
-        userData[sender.id + message.guild.id].protego = "Protego"
-        message.channel.send(`ADMIS`);    
-    }
-
-    if (message.content === prefix + "protego") {
-        if (message.member.roles.get(process.env.ROLEPLAY)) {
-            if (userData[sender.id + message.guild.id].protegod = "Oui") {
-                message.channel.send(`Tu peux.`);
-            }
-            else
-            {
-                if (userData[sender.id + message.guild.id].protegod = "Non") {
-                    message.channel.send(`Tu ne peux pas.`);
-                }
-            }
-        }
-    }
     
     if (message.content === prefix + "oakshaft79") {
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
@@ -830,28 +806,36 @@ bot.on('message', message => {
 
     if (message.content === prefix + "compte") {
         if (message.channel.id === process.env.GRINGOTTS) {
-            userData[sender.id + message.guild.id].gringotts = "Oui"
-            message.channel.send({embed:{
-                title: "Gringotts",
-                color: 0x0079FF,
-                fields: [{
-                    name: "Création du compte",
-                    value: userData[sender.id + message.guild.id].gringotts,
-                    inline: true
-                },
-                {
-                    name: "Propriétaire",
-                    value: message.author.username,
-                    inline: true
-                },
-                {
-                    name: "Balance du Compte",
-                    value: userData[sender.id + message.guild.id].money,
-                    inline: true
-                }]
-            }})
-            message.channel.send(`**[150 Gallions ont été ajoutés à votre compte, suite à sa création.]**`);
-            userData[sender.id + message.guild.id].money += 150.
+            if (userData[sender.id + message.guild.id].compte = "Oui" ) {
+                userData[sender.id + message.guild.id].gringotts = "Oui"
+                message.channel.send({embed:{
+                    title: "Gringotts",
+                    color: 0x0079FF,
+                    fields: [{
+                        name: "Création du compte",
+                        value: userData[sender.id + message.guild.id].gringotts,
+                        inline: true
+                    },
+                    {
+                        name: "Propriétaire",
+                        value: message.author.username,
+                        inline: true
+                    },
+                    {
+                        name: "Balance du Compte",
+                        value: userData[sender.id + message.guild.id].money,
+                        inline: true
+                    }]
+                }})
+                message.channel.send(`**[150 Gallions ont été ajoutés à votre compte, suite à sa création.]**`);
+                userData[sender.id + message.guild.id].money += 150.
+                userData[sender.id + message.guild.id].compte = "Oui"
+            }
+            else
+            {
+                if (userData[sender.id + message.guild.id].compte = "Non" ) {
+                    message.reply(`Tu ne peux pas.`)
+            }
         }
     }
     
