@@ -879,6 +879,13 @@ bot.on('message', message => {
             message.channel.send(`*${message.member}* lève son ${userData[sender.id + message.guild.id].balaisvolant}`);
             console.log(`Quelqu'un a fait levé son balais.`)
         }
+        else
+        {
+            if (userData[sender.id + message.guild.id].balais = "Non") {
+                message.channel.send(`*${message.member} n'a pas de balais, et ne pas en faire lever un.`);
+                console.log(`Quelqu'un n'a pas de balais pour utiliser DEBOUT!`)
+            }
+        }
     }
 
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
