@@ -324,8 +324,7 @@ bot.on('message', message => {
                 color: 0x00A1D7,
                 fields: [{
                     name: "Personnage",
-                    value: `**Prénom Nom :** ${message.member}
-**Métier :** ${userData[sender.id + message.guild.id].metier}`,
+                    value: `**Prénom Nom :** ${message.member}`,
 
                     inline: false
                 },
