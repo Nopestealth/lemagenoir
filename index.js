@@ -895,14 +895,14 @@ bot.on('message', message => {
             }
             else
             {
-                if (message.member.roles.get(process.env.ELEVE)) {
+                if (message.member.roles.get(process.env.ROLEPLAY)) {
                     if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
                         userData[sender.id + message.guild.id].lastDaily = moment().format('L')
-                        userData[sender.id + message.guild.id].money += 75;
+                        userData[sender.id + message.guild.id].money += 5;
                             message.channel.send({embed: {
                             title:'Jour de Paye',
                             color: 0x0079FF,
-                            description:'Vous récoltez 75 Gallions, ajouté à votre account!'
+                            description:'Vous récoltez 5 Gallions, ajouté à votre account!'
                     
                         }})
                     } else {
