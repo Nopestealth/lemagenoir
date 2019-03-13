@@ -20,7 +20,6 @@ function random(min, max){
 
 // JSON Files
 let userData = JSON.parse(fs.readFileSync('JSON/userData.json', 'utf8'));
-let spellData = JSON.parse(fs.readFileSync('JSON/spellData.json', 'utf8'));
 
 bot.on('ready', () => {
     bot.user.setActivity('vous aider');
@@ -36,8 +35,8 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 0.
     if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = "Not Collected";
 
-    if (!spellData[sender.id + message.guild.id]) spellData[sender.id + message.guild.id] = {}
-    if (!spellData[sender.id + message.guild.id].protego) spellData[sender.id + message.guild.id].protego = "Non";
+    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
+    if (!userData[sender.id + message.guild.id].protego) userData[sender.id + message.guild.id].protego = "Non";
 
     // Créer les points de Serpentards.
     if (!userData['Serpentard']) userData['Serpentard'] = {}
@@ -100,24 +99,20 @@ bot.on('message', message => {
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error (err);
     })
-
-    fs.writeFile('JSON/spellData.json', JSON.stringify(spellData), (err) => {
-        if (err) console.error (err);
-    })
     
     if (message.content === prefix + "aprotego") {
-        spellData[sender.id + message.guild.id.protego] = "Non"
+        userData[sender.id + message.guild.id.protego] = "Non"
         console.log(`Admis`)
     }
 
     if (message.content === prefix + "protego") {
         if (message.member.roles.get(process.env.ROLEPLAY)) {
-            if (spellData[sender.id + message.guild.id].protego = "Non") {
+            if (userData[sender.id + message.guild.id].protego = "Non") {
                 message.channel.send(`Tu ne peux pas.`);
             }
             else
             {
-                if (spellData[sender.id + message.guild.id].protego = "Protego") {
+                if (userData[sender.id + message.guild.id].protego = "Protego") {
                     message.channel.send(`Tu peux.`);
                 }
             }
@@ -904,9 +899,5 @@ bot.on('message', message => {
         if (err) console.error(err);
     })
 
-    fs.writeFile('JSON/spellData.json', JSON.stringify(spellData), (err) => {
-        if (err) console.error (err);
-    })
-    
 }});
 bot.login(process.env.TOKEN);
