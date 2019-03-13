@@ -101,7 +101,6 @@ bot.on('message', message => {
     })
     
     if (message.content === prefix + "aprotego") {
-        console.log(`Admis`)
         userData[sender.id + message.guild.id].protego = "Protego"
         message.channel.send(`ADMIS`);    
     }
