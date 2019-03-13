@@ -831,10 +831,8 @@ bot.on('message', message => {
                 userData[sender.id + message.guild.id].money += 150.
                 userData[sender.id + message.guild.id].compte = "Oui"
             }
-            else
-            {
-                if (userData[sender.id + message.guild.id].compte = "Non" ) {
-                    message.reply(`Tu ne peux pas.`)
+            if (userData[sender.id + message.guild.id].compte = "Non" ) {
+                message.reply(`Tu ne peux pas.`)
             }
         }
     }
