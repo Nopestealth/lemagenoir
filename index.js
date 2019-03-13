@@ -257,7 +257,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "choixpeaux") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.LCHOIXPEAUX) {
             if (message.member.roles.get(process.env.ELEVE)) {
                 message.reply("**[Choixpeaux]** Tu as déjà été attribué(e) à une maison.");
@@ -293,7 +293,7 @@ bot.on('message', message => {
     }   
     
     if (message.content === prefix + "informations") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Informations",
@@ -321,7 +321,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "chaudron" ) {
-        message.channel.delete        
+        message.delete        
         if (message.channel.id === process.env.MCHAUDRON) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 25.) {
@@ -355,7 +355,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "hiboux") {
-        message.channel.delete  
+        message.delete  
         if (message.channel.id === process.env.MHIBOUX) {
             if (userData[sender.id + message.guild.id].animal = "Non") {
                 if (message.member.roles.get(process.env.PRANNEE)) {
@@ -404,7 +404,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "menagerie") {
-        message.channel.delete  
+        message.delete  
         if (message.channel.id === process.env.MMENAGERIE) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 message.channel.send(`**[Helias]** Bonjour, et bienvenue à la Ménagerie Magique. Ici, vous pouvez acheter des chats ou des rats.`);
@@ -418,7 +418,7 @@ bot.on('message', message => {
     }
         
     if (message.content === prefix + "chat") {
-        message.channel.delete  
+        message.delete  
         if (message.channel.id === process.env.MMENAGERIE) {
             if (userData[sender.id + message.guild.id].animal = "Non") {
                 if (message.member.roles.get(process.env.PRANNEE)) {
@@ -466,7 +466,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rat") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.MMENAGERIE) {
             if (userData[sender.id + message.guild.id].animal = "Oui") { 
                 if (message.member.roles.get(process.env.PRANNEE)) {
@@ -513,7 +513,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "robes") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.MROBES) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 35.) {
@@ -555,7 +555,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "manuels") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.MMANUELS) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 30.) {
@@ -596,7 +596,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "apothicaire") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.MAPOTHICAIRE) {
             if (message.member.roles.get(process.env.PRANNEE)) {
                 if (userData[sender.id + message.guild.id].money > 15.) {
@@ -640,7 +640,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "baguette" ) {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.MOLLIVANDER) {
             if (userData[sender.id + message.guild.id].money > 7.) {
                 message.channel.send(`**[Ollivander]** Bonjour ${message.member}, tu viens cherchez ta baguette c'est cela ? Je vais te chercher celle-ci.` );
@@ -661,7 +661,7 @@ bot.on('message', message => {
         }
     }
     if (message.content === prefix + "aide") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Aide Philosophale",
@@ -689,7 +689,7 @@ bot.on('message', message => {
         }
     }
     if (message.content === prefix + "rserdaigle") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Serdaigle !')
@@ -699,7 +699,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "aserdaigle") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Serdaigle !')
@@ -709,7 +709,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rpoufsouffle") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Poufsouffle !')
@@ -719,7 +719,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "apoufsouffle") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Poufsouffle !')
@@ -729,7 +729,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rserpentard") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Serpentard !')
@@ -739,7 +739,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "aserpentard") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Serpentard !')
@@ -749,7 +749,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "rgryffondor") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Retrait de 10 points pour Gryffondor !')
@@ -760,7 +760,7 @@ bot.on('message', message => {
     
     
     if (message.content === prefix + "agryffondor") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.PROFESSEUR)) {
                 message.reply('**[Compteur]** Ajout de 10 points pour Gryffondor !')
@@ -770,7 +770,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "points") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             message.channel.send({embed: {
                 title: "Points",
@@ -800,7 +800,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "gringotts" || message.content === prefix + "balance") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.GRINGOTTS) {
             message.channel.send({embed:{
                 title: "Gringotts",
@@ -825,7 +825,7 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "compte") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.GRINGOTTS) {
             userData[sender.id + message.guild.id].gringotts = "Oui"
             message.channel.send({embed:{
@@ -853,7 +853,7 @@ bot.on('message', message => {
     }
     
     if (message.content === prefix + "paye" || message.content === prefix + "daily") {
-        message.channel.delete
+        message.delete
         if (message.channel.id === process.env.COMMANDS) {
             if (message.member.roles.get(process.env.ADULTE)) {
                 if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
