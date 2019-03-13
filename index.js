@@ -14,7 +14,7 @@ function random(min, max){
 
 function random2(min, max){
     min = Math.ceil(0);
-    max = Math.floor(4);
+    max = Math.floor(2);
     randnum = Math.floor(Math.random2() * (max - min +1)+ min);
 }
 
@@ -92,13 +92,12 @@ bot.on('message', message => {
 
     // Attribue un PREFIX à notre bot.
     let prefix = "!"
-    let aprefix = "!balais"
 
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error (err);
     })
     
-    if (message.content === aprefix + "oakshaft79") {
+    if (message.content === prefix + "oakshaft79") {
         message.channel.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
@@ -130,7 +129,7 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content === aprefix + "brossdur2") {
+    if (message.content === prefix + "brossdur2") {
         message.channel.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
@@ -162,7 +161,7 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content === aprefix + "brossdur3") {
+    if (message.content === prefix + "brossdur3") {
         message.channel.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
@@ -194,7 +193,7 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content === aprefix + "comete180") {
+    if (message.content === prefix + "comete180") {
         message.channel.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
@@ -226,7 +225,7 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content === aprefix + "nimbus1000") {
+    if (message.content === prefix + "nimbus1000") {
         message.delete
         if (message.channel.id === process.env.QUIDDITCHSUPLY) {
             if (message.member.roles.get(process.env.DEANNEE)) {
@@ -260,8 +259,14 @@ bot.on('message', message => {
 
     if (message.content === "Debout!") {
         if (userData[sender.id + message.guild.id].balais = "Oui") {
-            message.channel.send(`*${message.member}* lève son ${userData[sender.id + message.guild.id].balaisvolant}`);
-            console.log(`Quelqu'un a fait levé son balais.`)
+            random2()
+            if (randnum ==1) {
+                message.channel.send(`*${message.member} a réussit à lever son balais`);
+                console.log('Il arrive a lever son balais !')
+            }
+            if (randnum ==2) {
+                message.channel.send(`*${message.member} n'a pas réussit à lever son balais`);
+            }
         }
         else
         {
