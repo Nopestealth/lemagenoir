@@ -116,7 +116,7 @@ bot.on('message', message => {
             }
             else
             {
-                if (userData[sender.id + message.guild.id].protego = "Non") {
+                if (userData[sender.id + message.guild.id].protegod = "Non") {
                     message.channel.send(`Tu ne peux pas.`);
                 }
             }
