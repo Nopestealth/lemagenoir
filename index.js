@@ -258,7 +258,7 @@ bot.on('message', message => {
 
     if (message.content === "Debout!") {
         if (userData[sender.id + message.guild.id].balais = "Oui") {
-            random2()
+            random()
             if (randnum ==1) {
                 message.channel.send(`*${message.member} a réussit à lever son balais`);
                 console.log('Il arrive a lever son balais !')
