@@ -12,6 +12,12 @@ function random(min, max){
     randnum = Math.floor(Math.random() * (max - min +1)+ min);
 }
 
+function random2(min, max){
+    min = Math.ceil(0);
+    max = Math.floor(4);
+    randnum = Math.floor(Math.random2() * (max - min +1)+ min);
+}
+
 // JSON Files
 let userData = JSON.parse(fs.readFileSync('JSON/userData.json', 'utf8'));
 
@@ -49,9 +55,6 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].baguette) userData[sender.id + message.guild.id].baguette = "NONE"
 
-    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-    if (!userData[sender.id + message.guild.id].thebaguette) userData[sender.id + message.guild.id].thebaguette = "Non"
-
     // Métier d'une personne
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].metier) userData[sender.id + message.guild.id].metier = "NONE"
@@ -79,8 +82,17 @@ bot.on('message', message => {
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].gringotts) userData[sender.id + message.guild.id].gringotts = "Non"
 
+    // Créer les balais
+    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
+    if (!userData[sender.id + message.guild.id].balaisvolant) userData[sender.id + message.guild.id].balaisvolant = "Non"
+
+    // Informations concernant les balais
+    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
+    if (!userData[sender.id + message.guild.id].balais) userData[sender.id + message.guild.id].balais = "Non"
+
     // Attribue un PREFIX à notre bot.
     let prefix = "!"
+    let aprefix = "!balais"
 
     fs.writeFile('JSON/userData.json', JSON.stringify(userData), (err) => {
         if (err) console.error (err);
@@ -149,27 +161,6 @@ bot.on('message', message => {
         }
     }
     
-    if (message.content === prefix + "setwand") {
-        const messageSlice = message.content.slice(prefix.lenght).trim();
-        if (message.channel.id === process.env.THEWAND) {
-            if (userData[sender.id + message.guild.id].thebaguette = "Non") {
-                userData[sender.id + message.guild.id].baguette = messageSlice;
-                userData[sender.id + message.guild.id].thebaguette = "Oui"
-                message.channel.send('Done !');
-            }
-            else
-            {
-                if (userData[sender.id + message.guild.id].thebaguette = "Oui") {
-                    message.channel.send (`Vous ne pouvez plus faire celà.`)
-                }
-            }
-        }
-    }
-
-    if (message.content === prefix + "montremoi") {
-        message.channel.send(`${userData[sender.id + message.guild.id].baguette}`);
-    }
-
     if (message.content === prefix + "chaudron" ) {
         message.channel.delete        
         if (message.channel.id === process.env.MCHAUDRON) {
@@ -677,7 +668,6 @@ bot.on('message', message => {
     if (message.content === prefix + "compte") {
         message.channel.delete
         if (message.channel.id === process.env.GRINGOTTS) {
-            userData[sender.id + message.guild.id].money += 120.
             userData[sender.id + message.guild.id].gringotts = "Oui"
             message.channel.send({embed:{
                 title: "Gringotts",
@@ -699,6 +689,7 @@ bot.on('message', message => {
                 }]
             }})
             message.channel.send(`**[150 Gallions ont été ajoutés à votre compte, suite à sa création.]**`);
+            userData[sender.id + message.guild.id].money += 150.
         }
     }
     
@@ -720,6 +711,173 @@ bot.on('message', message => {
                 color: 0x0079FF,
                 description:'Vous avez déjà récolté votre paye. Vous pourrez récolter votre prochaine paye dans 24h '
             }})
+            }
+    }
+
+    if (message.content === aprefix + "oakshaft79") {
+        message.channel.delete
+        if (message.channel.id === process.env.QUIDDITCHSUPLY) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
+                if (userData[sender.id + message.guild.id].money > 95.) {
+                    if (userData[sender.id + message.guild.id].balais = "Non") {
+                        message.channel.send(`**[Felis]** Bonjour, et bienvenue chez Quality Quidditch Supplies.`);
+                        message.channel.send(`**[Felis]** Vous souhaitez un Oakshaft 79, c'est cela?`);
+                        message.channel.send(`**[Felis]** Je vois, vous achez choisit l'endurance, c'est un très bon choix.`);
+                        message.channel.send(`**[95 Gallions vous ont étés retirés de votre compte.]**`);
+                        userData[sender.id + message.guild.id].money -= 95;
+                        userData[sender.id + message.guild.id].balaisvolant = "Oakshaft 79";
+                    }
+                    else
+                    {
+                        if (userData[sender.id + message.guild.id].balais = "Oui") {
+                            message.channel.send(`Mais tu as déjà un balais, pourquoi en voudrai-tu un deuxième. (Demandez aux administrateurs pour un changement)`);
+                            console.log(`Quelqu'un avait déjà un balais, mais a décidé d'en racheter un. ECHEC`);
+                        }
+                    }
+                }
+                else
+                {
+                    if (userData[sender.id + message.guild.id].money < 95.) {
+                        message.channel.send(`**[Felis]** Mais, vous n'avez pas les moyens de vous procurer ceci.`);
+                        console.log(`Quelqu'un a essayé d'acheter un balais, mais n'a pas pu.`)
+                    }
+                }
+            }
+        }
+    }
+
+    if (message.content === aprefix + "brossdur2") {
+        message.channel.delete
+        if (message.channel.id === process.env.QUIDDITCHSUPLY) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
+                if (userData[sender.id + message.guild.id].money > 115.) {
+                    if (userData[sender.id + message.guild.id].balais = "Non") {
+                        message.channel.send(`**[Felis]** Bonjour, et bienvenue chez Quality Quidditch Supplies.`);
+                        message.channel.send(`**[Felis]** Vous souhaitez un Brossdur 2, c'est cela?`);
+                        message.channel.send(`**[Felis]** Je vois, c'est un très bon choix.`);
+                        message.channel.send(`**[95 Gallions vous ont étés retirés de votre compte.]**`);
+                        userData[sender.id + message.guild.id].money -= 115;
+                        userData[sender.id + message.guild.id].balaisvolant = "Brossdur 2";
+                    }
+                    else
+                    {
+                        if (userData[sender.id + message.guild.id].balais = "Oui") {
+                            message.channel.send(`Mais tu as déjà un balais, pourquoi en voudrai-tu un deuxième. (Demandez aux administrateurs pour un changement)`);
+                            console.log(`Quelqu'un avait déjà un balais, mais a décidé d'en racheter un. ECHEC`);
+                        }
+                    }
+                }
+                else
+                {
+                    if (userData[sender.id + message.guild.id].money < 115.) {
+                        message.channel.send(`**[Felis]** Mais, vous n'avez pas les moyens de vous procurer ceci.`);
+                        console.log(`Quelqu'un a essayé d'acheter un balais, mais n'a pas pu.`)
+                    }
+                }
+            }
+        }
+    }
+
+    if (message.content === aprefix + "brossdur3") {
+        message.channel.delete
+        if (message.channel.id === process.env.QUIDDITCHSUPLY) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
+                if (userData[sender.id + message.guild.id].money > 135.) {
+                    if (userData[sender.id + message.guild.id].balais = "Non") {
+                        message.channel.send(`**[Felis]** Bonjour, et bienvenue chez Quality Quidditch Supplies.`);
+                        message.channel.send(`**[Felis]** Vous souhaitez un Brossdur 3, c'est cela?`);
+                        message.channel.send(`**[Felis]** Je vois, c'est un très bon choix.`);
+                        message.channel.send(`**[135 Gallions vous ont étés retirés de votre compte.]**`);
+                        userData[sender.id + message.guild.id].money -= 135;
+                        userData[sender.id + message.guild.id].balaisvolant = "Brossdur 3";
+                    }
+                    else
+                    {
+                        if (userData[sender.id + message.guild.id].balais = "Oui") {
+                            message.channel.send(`Mais tu as déjà un balais, pourquoi en voudrai-tu un deuxième. (Demandez aux administrateurs pour un changement)`);
+                            console.log(`Quelqu'un avait déjà un balais, mais a décidé d'en racheter un. ECHEC`);
+                        }
+                    }
+                }
+                else
+                {
+                    if (userData[sender.id + message.guild.id].money < 135.) {
+                        message.channel.send(`**[Felis]** Mais, vous n'avez pas les moyens de vous procurer ceci.`);
+                        console.log(`Quelqu'un a essayé d'acheter un balais, mais n'a pas pu.`)
+                    }
+                }
+            }
+        }
+    }
+
+    if (message.content === aprefix + "comete180") {
+        message.channel.delete
+        if (message.channel.id === process.env.QUIDDITCHSUPLY) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
+                if (userData[sender.id + message.guild.id].money > 165.) {
+                    if (userData[sender.id + message.guild.id].balais = "Non") {
+                        message.channel.send(`**[Felis]** Bonjour, et bienvenue chez Quality Quidditch Supplies.`);
+                        message.channel.send(`**[Felis]** Vous souhaitez un Comète 180, c'est cela?`);
+                        message.channel.send(`**[Felis]** Je vois, c'est un très bon choix.`);
+                        message.channel.send(`**[135 Gallions vous ont étés retirés de votre compte.]**`);
+                        userData[sender.id + message.guild.id].money -= 165;
+                        userData[sender.id + message.guild.id].balaisvolant = "Comète 180";
+                    }
+                    else
+                    {
+                        if (userData[sender.id + message.guild.id].balais = "Oui") {
+                            message.channel.send(`Mais tu as déjà un balais, pourquoi en voudrai-tu un deuxième. (Demandez aux administrateurs pour un changement)`);
+                            console.log(`Quelqu'un avait déjà un balais, mais a décidé d'en racheter un. ECHEC`);
+                        }
+                    }
+                }
+                else
+                {
+                    if (userData[sender.id + message.guild.id].money < 165.) {
+                        message.channel.send(`**[Felis]** Mais, vous n'avez pas les moyens de vous procurer ceci.`);
+                        console.log(`Quelqu'un a essayé d'acheter un balais, mais n'a pas pu.`)
+                    }
+                }
+            }
+        }
+    }
+
+    if (message.content === aprefix + "nimbus1000") {
+        message.channel.delete
+        if (message.channel.id === process.env.QUIDDITCHSUPLY) {
+            if (message.member.roles.get(process.env.DEANNEE)) {
+                if (userData[sender.id + message.guild.id].money > 255.) {
+                    if (userData[sender.id + message.guild.id].balais = "Non") {
+                        message.channel.send(`**[Felis]** Bonjour, et bienvenue chez Quality Quidditch Supplies.`);
+                        message.channel.send(`**[Felis]** Vous souhaitez un Nimbus 1000, c'est cela?`);
+                        message.channel.send(`**[Felis]** Je vois, sa vitesse est révolutionnaire. C'est un très bon choix.`);
+                        message.channel.send(`**[135 Gallions vous ont étés retirés de votre compte.]**`);
+                        userData[sender.id + message.guild.id].money -= 255;
+                        userData[sender.id + message.guild.id].balaisvolant = "Nimbus 1000";
+                    }
+                    else
+                    {
+                        if (userData[sender.id + message.guild.id].balais = "Oui") {
+                            message.channel.send(`Mais tu as déjà un balais, pourquoi en voudrai-tu un deuxième. (Demandez aux administrateurs pour un changement)`);
+                            console.log(`Quelqu'un avait déjà un balais, mais a décidé d'en racheter un. ECHEC`);
+                        }
+                    }
+                }
+                else
+                {
+                    if (userData[sender.id + message.guild.id].money < 255.) {
+                        message.channel.send(`**[Felis]** Mais, vous n'avez pas les moyens de vous procurer ceci.`);
+                        console.log(`Quelqu'un a essayé d'acheter un balais, mais n'a pas pu.`)
+                    }
+                }
+            }
+        }
+    }
+
+    if (message.content === "Debout!") {
+        if (userData[sender.id + message.guild.id].balais = "Oui") {
+            message.channel.send(`*${message.member}* lève son ${userData[sender.id + message.guild.id].balaisvolant}`);
+            console.log(`Quelqu'un a fait levé son balais.`)
         }
     }
 
