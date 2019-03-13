@@ -101,7 +101,7 @@ bot.on('message', message => {
     })
     
     if (message.content === prefix + "aprotego") {
-        userData[sender.id + message.guild.id.protego] = "Non"
+        userData[sender.id + message.guild.id.protego] = "Protego"
         console.log(`Admis`)
     }
 
